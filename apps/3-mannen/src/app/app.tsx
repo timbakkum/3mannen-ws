@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { Message } from '@3-mannen-ws/api-interfaces';
+import { DiceRolling } from '../components/DiceRolling';
+import NameForm from '../components/NameForm';
+import { UserList } from '../components/UserList';
+import socket from './../client';
 
 export const App = () => {
-  const [m, setMessage] = useState<Message>({ message: '' });
+  const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
-    fetch('/api')
-      .then((r) => r.json())
-      .then(setMessage);
-  }, []);
+
+    socket.on("connect", (e) => {
+      console.log(e)
+      setIsConnected(true);
+    });
+  }, [])
 
   return (
-    <>
-      <div style={{ textAlign: 'center' }}>
-        <h1>Welcome to 3-mannen!</h1>
-        <img
-          width="450"
-          src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-        />
-      </div>
-      <div>{m.message}</div>
-    </>
+    <div style={{ textAlign: 'center' }}>
+      <h1>Welcome to 3-mannen!</h1>
+      {!isConnected ? <NameForm /> : 'Je bent erbij!'}
+      <UserList />
+      <DiceRolling />
+    </div>
   );
 };
 

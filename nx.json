@@ -16,9 +16,17 @@
   "npmScope": "3-mannen-ws",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
+        "accessToken": "ZmRjYzBjYjItMDQxNi00NzEzLThjZDMtYjI0OWYwNDkyNmM5fHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
       }
     }
   },
@@ -28,7 +36,9 @@
     },
     "3-mannen-e2e": {
       "tags": [],
-      "implicitDependencies": ["3-mannen"]
+      "implicitDependencies": [
+        "3-mannen"
+      ]
     },
     "api": {
       "tags": []
